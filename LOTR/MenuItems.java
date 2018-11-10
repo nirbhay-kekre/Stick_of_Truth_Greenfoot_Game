@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Logo here.
+ * Write a description of class MenuItems here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Logo extends MenuItems
+public class MenuItems extends Actor
 {
     /**
-     * Act - do whatever the Logo wants to do. This method is called whenever
+     * Act - do whatever the MenuItems wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
