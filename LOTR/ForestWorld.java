@@ -27,7 +27,10 @@ public class ForestWorld extends World
         
         
         
-        
+        Elf elf1 = new Elf();
+        addObject(elf1, 793, 194);
+        Elf elf2 = new Elf();
+        addObject(elf2, 755, 421);
         
         
         
