@@ -36,6 +36,7 @@ public class Messages extends Actor implements IMessageSubject
         }
     }
     
+      
         backImage.drawImage(text,20,60);
            setImage(backImage);
   

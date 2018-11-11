@@ -25,14 +25,27 @@ public class Arrow extends Actor
         }
         
         if ("space".equals(Greenfoot.getKey()))
-        {
+        { 
+             if (Greenfoot.isKeyDown("shift"))
+        { 
+            fireSpecial();
+        }else{
             fire();
         }
+    }
     }  
     
       private void fire()
     {
         NormalSpell ns = new NormalSpell();
+        getWorld().addObject(ns, getX(), getY());
+        ns.setRotation(getRotation()-50);
+        ns.move(40);
+    }
+    
+       private void fireSpecial()
+    {
+        SpecialPower ns = new SpecialPower();
         getWorld().addObject(ns, getX(), getY());
         ns.setRotation(getRotation()-50);
         ns.move(40);

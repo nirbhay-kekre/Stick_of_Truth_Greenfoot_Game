@@ -24,7 +24,7 @@ public class Elf extends Characters
         if (isAtEdge()){
           //Reduce Score
           
-          getWorld().addObject(new Elf(0-getRandomNumber(2,5)), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
+          getWorld().addObject(new Elf(0-getRandomNumber(2,6)), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
           getWorld().removeObject(this);
          
         }
