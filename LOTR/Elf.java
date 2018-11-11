@@ -8,24 +8,33 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Elf extends Characters
 {
-    /**
-     * Act - do whatever the Elf wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    int speed;
+    public Elf(int speed){
+        this.speed =speed;
+    }
+    
     public void act() 
     {
-        
          Move();
     }
     
     public void Move()
     {
-        move(-2);
+        move(speed);
         if (isAtEdge()){
           //Reduce Score
+          
+          getWorld().addObject(new Elf(0-getRandomNumber(2,5)), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
           getWorld().removeObject(this);
+         
         }
 
     }
+    
+    public int getRandomNumber(int start,int end)
+{
+       int normal = Greenfoot.getRandomNumber(end-start+1);
+       return normal+start;
+}
     
 }

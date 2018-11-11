@@ -24,7 +24,7 @@ public class Arrow extends Actor
             setRotation (getRotation() + 5);
         }
         
-     if ("space".equals(Greenfoot.getKey()))
+        if ("space".equals(Greenfoot.getKey()))
         {
             fire();
         }

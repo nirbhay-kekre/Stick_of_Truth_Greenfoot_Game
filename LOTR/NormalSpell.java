@@ -6,26 +6,27 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class NormalSpell extends Actor
+public class NormalSpell extends Powers
 {
        public void act() 
     {
        splatter();
        getEnemy();
        move(20);
-        
+        try{
         if (isAtEdge())
         {
             getWorld().removeObject(this);
-        }    
+        } }catch(Exception e){
+        }   
     } 
         public void getEnemy() 
     {
         if (isTouching(Elf.class))
         {
             removeTouching(Elf.class);
-            getWorld().addObject(new Elf(), Greenfoot.getRandomNumber(getWorld().getWidth()/2), Greenfoot.getRandomNumber(getWorld().getHeight()));
-
+            getWorld().addObject(new Elf(0-getRandomNumber(2,5)),1280, Greenfoot.getRandomNumber(getWorld().getHeight()));  
+            getWorld().removeObject(this); 
         }
     }
     public void splatter()
@@ -37,6 +38,11 @@ public class NormalSpell extends Actor
         }
     }
     
+        public int getRandomNumber(int start,int end)
+{
+       int normal = Greenfoot.getRandomNumber(end-start+1);
+       return normal+start;
+}
     
     
 }

@@ -28,17 +28,17 @@ public class MainMenu extends World
         MenuItems startMission =new StartMission();
         addObject(startMission,getWidth()/2, 400);
         //Character Initializations
-        grandWizard gw = new grandWizard();
+        Characters gw = new TheGrandWizard();
         addObject(gw,100,680);
         
         
-        ProfChaos pc = new ProfChaos();
+        Characters pc = new ProfChaos();
         addObject(pc,400,680);
         
-        HighElf he = new HighElf();
+        Characters he = new HighElf();
         addObject(he,700,680);
         
-        MarshWalker mw = new MarshWalker();
+        Characters mw = new MarshWalker();
         addObject(mw,1000,680);
         
         
