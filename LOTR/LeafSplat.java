@@ -2,12 +2,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class LeafSplat extends Actor
 {
-    /**
-     * Act - do whatever the LeafSplat wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    GifImage gifImage;
+    
+    public LeafSplat(){
+    gifImage=  new GifImage("leaves.gif");
+    
+    }
     public void act() 
     {
+        setImage(gifImage.getCurrentImage());
         despawn();
     }    
     private int life = 50;

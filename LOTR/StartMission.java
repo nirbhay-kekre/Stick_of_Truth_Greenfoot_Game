@@ -1,19 +1,26 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class StartMission here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class StartMission extends MenuItems
+public class StartMission extends MenuItems implements IInvoker
 {
-    /**
-     * Act - do whatever the StartMission wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+
+    
     public void act() 
     {
-        // Add your action code here.
-    }    
+            if(Greenfoot.mouseClicked(this)){
+            invoke();           
+        }
+       
+        
+    }
+    
+    
+    ICommand startMissionCommand;
+    public void setCommand(ICommand cmd){
+     this.startMissionCommand = cmd;
+    }
+    public void invoke(){
+    startMissionCommand.execute(); 
+    }
+    
+    
 }

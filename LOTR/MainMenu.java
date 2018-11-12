@@ -1,5 +1,5 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import greenfoot.*; 
+import java.util.*;
 /**
  * Write a description of class MainMenu here.
  * 
@@ -16,6 +16,9 @@ public class MainMenu extends World
     public MainMenu()
     {    
         super(1280, 800, 1); 
+        
+         
+        
         //Music
         GreenfootSound backgroundMusic = new GreenfootSound("bgm.mp3");
         backgroundMusic.playLoop();
@@ -47,6 +50,39 @@ public class MainMenu extends World
         
         
         
+  
+
+        ICommand legendCommand =new Command();
+        ICommand levelOneCommand = new Command();
+       
+
+        legendCommand.setReciever(new IReceiver() {
+            @Override
+            public void doAction() {
+                Greenfoot.setWorld(new ForestWorld());
+            }
+        });
+
+
+
+        levelOneCommand.setReciever(new IReceiver() {
+            @Override
+            public void doAction() {
+                Greenfoot.setWorld(new ForestWorld());
+            }
+        });
+
+
+        legend.setCommand(legendCommand);
+        startMission.setCommand(levelOneCommand);
+       
+
+
+        
+
+
+        
+     
         
         
         

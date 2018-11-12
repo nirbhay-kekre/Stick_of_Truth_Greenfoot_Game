@@ -31,7 +31,7 @@ public class Arrow extends Actor
             fireSpecial();
         }else{
             fire();
-        }
+        } 
     }
     }  
     
