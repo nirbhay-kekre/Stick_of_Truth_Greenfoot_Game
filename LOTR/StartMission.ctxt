@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=StartMission
-comment1.params=
-comment1.target=void\ act()
-comment2.params=cmd
-comment2.target=void\ setCommand(ICommand)
-comment3.params=
-comment3.target=void\ invoke()
-numComments=4

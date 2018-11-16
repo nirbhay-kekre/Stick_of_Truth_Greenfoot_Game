@@ -1,5 +1,0 @@
-#BlueJ class context
-comment0.target=ICharacterBehaviour
-comment1.params=stance
-comment1.target=void\ setStance(java.lang.String)
-numComments=2
