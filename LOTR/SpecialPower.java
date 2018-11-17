@@ -26,7 +26,16 @@ public class SpecialPower extends Powers
         if (isTouching(Elf.class))
         {
             removeTouching(Elf.class);
-            getWorld().addObject(new Elf(0-getRandomNumber(2,5)),1280, Greenfoot.getRandomNumber(getWorld().getHeight())); 
+            IMoveStrategy newMoveStrategy;
+            if ( Greenfoot.getRandomNumber(100) < 10 )
+            {
+                // 30% time sinusoidal strategy
+                newMoveStrategy = new SinusoidalMovementStrategy();
+            }else {
+                // 70% time straight strategy
+                newMoveStrategy = new StraightMovementStrategy();
+            }
+            getWorld().addObject(new Elf(newMoveStrategy),1280, Greenfoot.getRandomNumber(getWorld().getHeight())); 
             kills+=1;
             if(kills==5){
                  getWorld().removeObject(this);
