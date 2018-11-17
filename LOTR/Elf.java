@@ -8,33 +8,38 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Elf extends Characters
 {
-    int speed;
-    public Elf(int speed){
-        this.speed =speed;
+    private IMoveStrategy moveStrategy;
+    
+    public Elf(IMoveStrategy moveStrategy){
+        this.moveStrategy = moveStrategy;
+        this.moveStrategy.setActor(this);
+    }
+    
+    public void changeMovementStrategy(IMoveStrategy moveStrategy){
+        this.moveStrategy = moveStrategy;
+        this.moveStrategy.setActor(this);
+    }
+    
+    public void actorOnEdgeAction(){
+        if (this.isAtEdge() && getX() ==0){
+            // move creation of elf to factory
+            IMoveStrategy newMoveStrategy;
+            if ( Greenfoot.getRandomNumber(100) < 30 )
+            {
+                // 30% time sinusoidal strategy
+                newMoveStrategy = new SinusoidalMovementStrategy();
+            }else {
+                // 70% time straight strategy
+                newMoveStrategy = new StraightMovementStrategy();
+            }
+            getWorld().addObject(new Elf(newMoveStrategy), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
+            getWorld().removeObject(this);
+        }
     }
     
     public void act() 
     {
-         Move();
+         this.moveStrategy.moveActor();
+         actorOnEdgeAction();
     }
-    
-    public void Move()
-    {
-        move(speed);
-        if (isAtEdge()){
-          //Reduce Score
-          
-          getWorld().addObject(new Elf(0-getRandomNumber(2,6)), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
-          getWorld().removeObject(this);
-         
-        }
-
-    }
-    
-    public int getRandomNumber(int start,int end)
-{
-       int normal = Greenfoot.getRandomNumber(end-start+1);
-       return normal+start;
-}
-    
 }
