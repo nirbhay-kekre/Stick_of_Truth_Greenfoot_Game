@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ProfChaos extends Characters
+public class ProfChaos extends Hero
 {
     /**
      * Act - do whatever the ProfChaos wants to do. This method is called whenever
@@ -15,6 +15,7 @@ public class ProfChaos extends Characters
     public void act() 
     {
         // Add your action code here.
+        super.act();
     }  
     
     public void setStance(String stance){

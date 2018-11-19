@@ -6,14 +6,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Powers extends Actor
+public abstract class Powers extends Actor
 {
-    /**
-     * Act - do whatever the Powers wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
-    }    
+   
+    protected abstract void setDamagingPower(int damagingPower);
+    
+    public abstract int getDamagingPower();
+    
+    public void reduceDamagingPower(int reducedBy){
+        int updatedPower =this.getDamagingPower() - reducedBy;
+        this.setDamagingPower(updatedPower > 0 ? updatedPower : 0);
+    }
+    
 }

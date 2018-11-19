@@ -8,50 +8,32 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class NormalSpell extends Powers
 {
-       public void act() 
+    private int damagingPower = 1;
+    
+    public void act() 
     {
-       splatter();
-       getEnemy();
-       move(20);
-        try{
-        if (isAtEdge())
+        super.act();
+        move(20);
+        
+        if (isAtEdge() || damagingPower <=0)
         {
             getWorld().removeObject(this);
-        } }catch(Exception e){
-        }   
+        }
+       
     } 
-        public void getEnemy() 
-    {
-        if (isTouching(Elf.class))
-        {
-            removeTouching(Elf.class);
-            IMoveStrategy newMoveStrategy;
-            if ( Greenfoot.getRandomNumber(100) < 30 )
-            {
-                // 30% time sinusoidal strategy
-                newMoveStrategy = new SinusoidalMovementStrategy();
-            }else {
-                // 70% time straight strategy
-                newMoveStrategy = new StraightMovementStrategy();
-            }
-            getWorld().addObject(new Elf(newMoveStrategy),1280, Greenfoot.getRandomNumber(getWorld().getHeight()));  
-            getWorld().removeObject(this); 
-        }
-    }
-    public void splatter()
-    {
-         if(isTouching(Elf.class))
-        {
-            LeafSplat splat = new LeafSplat();
-            getWorld().addObject(splat, getX(), getY());
-        }
-    }
     
-        public int getRandomNumber(int start,int end)
-{
+    
+    public int getRandomNumber(int start,int end)
+    {
        int normal = Greenfoot.getRandomNumber(end-start+1);
        return normal+start;
-}
+    }
     
+    public int getDamagingPower(){
+        return damagingPower;
+    }
     
+    protected void setDamagingPower(int damagingPower){
+        this.damagingPower = damagingPower;
+    }
 }
