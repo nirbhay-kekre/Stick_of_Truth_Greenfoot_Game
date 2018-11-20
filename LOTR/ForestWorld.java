@@ -34,6 +34,7 @@ public class ForestWorld extends World implements IMessageObserver
          addObject(killScore, 308, 26);
          
          powerSpellBoard =  PowerSpellBoard.getPowerSpellBoard();
+         powerSpellBoard.resetPowerSpells();
          addObject(powerSpellBoard, 508, 26);
          
          ch= new TheGrandWizard();

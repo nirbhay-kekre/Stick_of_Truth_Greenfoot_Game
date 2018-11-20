@@ -57,6 +57,15 @@ public class PowerSpellBoard extends Actor implements IScoreBoardPowerSpellObser
     }
     
     /**
+     *  This method will reset the power spell scoreboard, Since power spell scoreboard is a singleton class, we have introduced this method
+     *  to reset the score board if user hits reset on greenfoot.
+     */
+    protected void resetPowerSpells(){
+        currentPowerSpells = 0;
+        updateImage();
+    }
+    
+    /**
      * Update the image on screen to show the current value.
      */
     private void updateImage()
