@@ -13,6 +13,7 @@ public class ForestWorld extends World implements IMessageObserver
     private int difficulty;
     private HealthScoreBoard healthScore;
     private KillsScoreBoard killScore;
+    private PowerSpellBoard powerSpellBoard;
     private EnemyFactory enemy;
      
     public ForestWorld()
@@ -31,7 +32,10 @@ public class ForestWorld extends World implements IMessageObserver
          killScore = KillsScoreBoard.getKillsScoreBoard();
          killScore.resetKills();
          addObject(killScore, 308, 26);
-
+         
+         powerSpellBoard =  PowerSpellBoard.getPowerSpellBoard();
+         addObject(powerSpellBoard, 508, 26);
+         
          ch= new TheGrandWizard();
          addObject(ch,100,680);
          enemy = EnemyFactory.getEnemyFactory();
