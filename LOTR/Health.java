@@ -9,6 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Health extends HelpingCharacters
 {
     private IMoveStrategy movementStrategy;
+    private int healthPower;
+    
+    public Health() {
+        healthPower = 10;
+        this.movementStrategy = new StraightMovementStrategy();
+        this.movementStrategy.setActor(this);
+    }
     
     /**
      * Act - do whatever the Health wants to do. This method is called whenever
@@ -16,6 +23,17 @@ public class Health extends HelpingCharacters
      */
     public void act() 
     {
-        // Add your action code here.
-    }    
+        this.movementStrategy.moveActor();
+        this.removeHealthOnEdge();
+    }
+    
+    public void removeHealthOnEdge(){
+        if(this.isAtEdge() && getX() ==0){
+            getWorld().removeObject(this);
+        }
+    }
+    
+    public int getHealthPower(){
+        return healthPower;
+    }
 }

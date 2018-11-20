@@ -13,6 +13,8 @@ public class HealthScoreBoard extends Actor implements IScoreBoardHealthObserver
     private int health;
     private int maxHealth =100;
     private static HealthScoreBoard instance;
+    private int lagInGenerationOfHealth = 30;
+    private int currentFrame = 1;
     
     /**
      * Get singleton instace of health scoreboard
@@ -39,9 +41,23 @@ public class HealthScoreBoard extends Actor implements IScoreBoardHealthObserver
      */
     public void act() 
     {
-        //do nothing
+        currentFrame = (currentFrame +1)% lagInGenerationOfHealth; 
+        if(currentFrame==0 && getWorld().getObjects(Health.class).size() < 2)
+        {
+            //create at Max 2 healths on screen at a time
+            if(health < 30){
+                //generate health with 30% probability
+                if(Greenfoot.getRandomNumber(100) < 30){
+                    generateHealth();
+                }
+            }
+            
+        }
     }
 
+    private void generateHealth(){
+        getWorld().addObject(new Health(),1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
+    }
     /**
      * updates the health score board
      */

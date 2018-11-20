@@ -48,9 +48,13 @@ public class Hero extends Characters implements IScoreBoardHealthSubject
     }
     
     protected boolean isGotHealth(){
-        /*if(isTouching(Health.class)){
+        if(isTouching(Health.class)){
+            Health health = (Health) getOneIntersectingObject(Health.class);
+            int healthPower = health.getHealthPower();
             
-        }*/
+            notifyScoreBoardForHealthUpdate(healthPower > 0 ? healthPower: 0);
+            this.removeTouching(Health.class);
+        }
         return false;
     }
     

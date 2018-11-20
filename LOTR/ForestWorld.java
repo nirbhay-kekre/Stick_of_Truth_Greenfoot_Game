@@ -70,5 +70,5 @@ public class ForestWorld extends World implements IMessageObserver
         }else if(message.equals("StartGame")){
             startGame();
         }
-        }
+    }
 }
