@@ -1,32 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Elf here.
+ * Write a description of class Snake here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Elf extends Enemy
+public class Snake extends Enemy
 {
-    private IMoveStrategy moveStrategy;
-    private int damagingPower = 5;
+   private IMoveStrategy moveStrategy;
+    private int damagingPower = 2;
     private int health =1;
     private EnemyFactory enemy ;
     /**
-    * Constructor for Elf
+    * Constructor for Snake
     */
-    public Elf(IMoveStrategy moveStrategy){
-        this.moveStrategy = moveStrategy;
+    public Snake(){
+        this.moveStrategy = new SinusoidalMovementStrategy();
         this.moveStrategy.setActor(this);
         enemy = EnemyFactory.getEnemyFactory();
-    }
-    
-    /**
-    * Strategy pattern, changing movement strategy from straight to sinusoidal or vice versa
-    */
-    public void changeMovementStrategy(IMoveStrategy moveStrategy){
-        this.moveStrategy = moveStrategy;
-        this.moveStrategy.setActor(this);
     }
     
     /**
@@ -34,7 +26,6 @@ public class Elf extends Enemy
     */
     public void actorOnEdgeAction(){
         if (this.isAtEdge() && getX() ==0){
-            
             enemy.generateRandomEnemy();
             getWorld().removeObject(this);
         }
@@ -45,7 +36,6 @@ public class Elf extends Enemy
          super.act();
          
          if(health <=0){
-            EnemyFactory enemy = EnemyFactory.getEnemyFactory();
             enemy.generateRandomEnemy();  
             LeafSplat splat = new LeafSplat();
             getWorld().addObject(splat, getX(), getY());

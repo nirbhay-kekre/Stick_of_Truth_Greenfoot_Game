@@ -8,11 +8,12 @@ import greenfoot.*;
 public class ForestWorld extends World implements IMessageObserver
 {
 
-    Characters ch;
+    private Characters ch;
     private Messages messages;
     private int difficulty;
     private HealthScoreBoard healthScore;
     private KillsScoreBoard killScore;
+    private EnemyFactory enemy;
      
     public ForestWorld()
     {    
@@ -33,23 +34,15 @@ public class ForestWorld extends World implements IMessageObserver
 
          ch= new TheGrandWizard();
          addObject(ch,100,680);
-
+         enemy = EnemyFactory.getEnemyFactory();
+         addObject(enemy,0,0);
     }
     
     public void startGame(){
-         Arrow arrow =new Arrow();
-         addObject(arrow,180,630);
-         for(int i=0;i<difficulty;i++){
-             IMoveStrategy newMoveStrategy;
-             if ( Greenfoot.getRandomNumber(100) < 30 )
-             {
-                 // 30% time sinusoidal strategy
-                 newMoveStrategy = new SinusoidalMovementStrategy();
-             }else {
-                 // 70% time straight strategy
-                 newMoveStrategy = new StraightMovementStrategy();
-             }
-             addObject(new Elf(newMoveStrategy), 1280, Greenfoot.getRandomNumber( getHeight()));        
+        Arrow arrow =new Arrow();
+        addObject(arrow,180,630);
+        for(int i=0;i<difficulty;i++){
+               enemy.generateRandomEnemy();  
         }
         removeObject(messages);
      
