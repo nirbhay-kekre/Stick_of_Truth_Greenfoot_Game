@@ -1,13 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.List;
+import java.util.ArrayList;
 /**
  * Write a description of class Arrow here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Arrow extends Actor
+public class Arrow extends Actor implements IScoreBoardPowerSpellSubject
 {
+    private List<IScoreBoardPowerSpellObserver> powerSpellObservers = new ArrayList<IScoreBoardPowerSpellObserver>();
+    public Arrow(){
+        this.registerScoreBoardPowerSpellObserver(PowerSpellBoard.getPowerSpellBoard());
+    }
     /**
      * Act - do whatever the Arrow wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -26,15 +31,18 @@ public class Arrow extends Actor
         
         if ("space".equals(Greenfoot.getKey()))
         { 
-             if (Greenfoot.isKeyDown("shift"))
-        { 
-            fireSpecial();
-        }else{
-            fire();
-        } 
-    }
+             if (Greenfoot.isKeyDown("shift") && hasSpecialPower())
+            { 
+                fireSpecial();
+            }else{
+                fire();
+            } 
+        }
     }  
     
+    public boolean hasSpecialPower(){
+        return PowerSpellBoard.getPowerSpellBoard().getCurrentPowerSpells() > 0;
+    }
       private void fire()
     {
         NormalSpell ns = new NormalSpell();
@@ -49,6 +57,18 @@ public class Arrow extends Actor
         getWorld().addObject(ns, getX(), getY());
         ns.setRotation(getRotation()-50);
         ns.move(40);
+        notifyScoreBoardForPowerSpellUpdate(-1);
     }
     
+    public void registerScoreBoardPowerSpellObserver(IScoreBoardPowerSpellObserver observer){
+        powerSpellObservers.add(observer);
+    }
+    public void unregisterScoreBoardPowerSpellObserver(IScoreBoardPowerSpellObserver observer){
+        powerSpellObservers.remove(observer);
+    }
+    public void notifyScoreBoardForPowerSpellUpdate(int powerSpell){
+        for(IScoreBoardPowerSpellObserver observer : powerSpellObservers){
+             observer.updateScoreBoardPowerSpell(powerSpell);
+        }
+    }
 }

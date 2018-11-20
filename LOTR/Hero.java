@@ -7,12 +7,13 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Hero extends Characters implements IScoreBoardHealthSubject
+public class Hero extends Characters implements IScoreBoardHealthSubject, IScoreBoardPowerSpellSubject
 {
     private List<IScoreBoardHealthObserver> observers = new ArrayList<IScoreBoardHealthObserver>();
-    
+    private List<IScoreBoardPowerSpellObserver> powerSpellObservers = new ArrayList<IScoreBoardPowerSpellObserver>();
     public Hero(){
         this.registerScoreBoardHealthObserver(HealthScoreBoard.getHealthScoreBoard());
+        this.registerScoreBoardPowerSpellObserver(PowerSpellBoard.getPowerSpellBoard());
     }
     
     /**
@@ -21,11 +22,12 @@ public class Hero extends Characters implements IScoreBoardHealthSubject
      */
     public void act() 
     {
-        isHitByEnemy();
-        isGotHealth();
+        updateOnHitByEnemy();
+        updateOnGotHealth();
+        updateOnTouchingPowerSpell();
     }    
     
-    protected boolean isHitByEnemy(){
+    protected boolean updateOnHitByEnemy(){
         if(isTouching(Enemy.class)){
             Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
             int damage = enemy.getDamagingPower();
@@ -47,13 +49,24 @@ public class Hero extends Characters implements IScoreBoardHealthSubject
         return false;
     }
     
-    protected boolean isGotHealth(){
+    protected boolean updateOnGotHealth(){
         if(isTouching(Health.class)){
             Health health = (Health) getOneIntersectingObject(Health.class);
             int healthPower = health.getHealthPower();
             
             notifyScoreBoardForHealthUpdate(healthPower > 0 ? healthPower: 0);
             this.removeTouching(Health.class);
+        }
+        return false;
+    }
+    
+    protected boolean updateOnTouchingPowerSpell(){
+        if(isTouching(PowerSpell.class)){
+            PowerSpell powerSpell = (PowerSpell) getOneIntersectingObject(PowerSpell.class);
+            int numberOfPowerSpell = powerSpell.getNumberOfSpells();
+            
+            notifyScoreBoardForPowerSpellUpdate(numberOfPowerSpell > 0 ? numberOfPowerSpell: 0);
+            this.removeTouching(PowerSpell.class);
         }
         return false;
     }
@@ -72,4 +85,15 @@ public class Hero extends Characters implements IScoreBoardHealthSubject
         }
     }
     
+    public void registerScoreBoardPowerSpellObserver(IScoreBoardPowerSpellObserver observer){
+        powerSpellObservers.add(observer);
+    }
+    public void unregisterScoreBoardPowerSpellObserver(IScoreBoardPowerSpellObserver observer){
+        powerSpellObservers.remove(observer);
+    }
+    public void notifyScoreBoardForPowerSpellUpdate(int powerSpell){
+        for(IScoreBoardPowerSpellObserver observer : powerSpellObservers){
+             observer.updateScoreBoardPowerSpell(powerSpell);
+        }
+    }
 }
