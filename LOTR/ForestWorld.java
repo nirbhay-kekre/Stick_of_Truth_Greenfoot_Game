@@ -53,7 +53,7 @@ public class ForestWorld extends World implements IMessageObserver
      
     }
 
-     public void changeCharacterStance(){
+    public void changeCharacterStance(){
      ch.setStance("Attack"); 
     }
 
