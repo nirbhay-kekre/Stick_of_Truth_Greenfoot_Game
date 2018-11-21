@@ -37,8 +37,7 @@ public class Snake extends Enemy
          
          if(health <=0){
             enemy.generateRandomEnemy();  
-            LeafSplat splat = new LeafSplat();
-            getWorld().addObject(splat, getX(), getY());
+            showExplosion();
             getWorld().removeObject(this);
          }else{
          this.moveStrategy.moveActor();
