@@ -15,6 +15,8 @@ public class HealthScoreBoard extends Actor implements IScoreBoardHealthObserver
     private static HealthScoreBoard instance;
     private int lagInGenerationOfHealth = 30;
     private int currentFrame = 1;
+    private HelpingCharactersFactory hcfactory;
+
     
     /**
      * Get singleton instace of health scoreboard
@@ -34,6 +36,7 @@ public class HealthScoreBoard extends Actor implements IScoreBoardHealthObserver
         background = getImage();  // get image from class
         health = maxHealth;
         updateImage();
+        hcfactory = HelpingCharactersFactory.getHCFactory();
     }
     
     /**
@@ -56,7 +59,7 @@ public class HealthScoreBoard extends Actor implements IScoreBoardHealthObserver
     }
 
     private void generateHealth(){
-        getWorld().addObject(new Health(),1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
+        hcfactory.generateHelpingCharacter("Health");
     }
     /**
      * updates the health score board
