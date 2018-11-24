@@ -55,4 +55,9 @@ public abstract class Enemy extends Characters implements IScoreBoardKillCountSu
         }
         
     }
+    
+    public void showExplosion(){
+        Explosion explosion = new Explosion();
+        getWorld().addObject(explosion, this.getX(), this.getY());
+    }
 }

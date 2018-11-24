@@ -47,8 +47,7 @@ public class Elf extends Enemy
          if(health <=0){
             EnemyFactory enemy = EnemyFactory.getEnemyFactory();
             enemy.generateRandomEnemy();  
-            LeafSplat splat = new LeafSplat();
-            getWorld().addObject(splat, getX(), getY());
+            showExplosion();
             getWorld().removeObject(this);
          }else{
          this.moveStrategy.moveActor();
