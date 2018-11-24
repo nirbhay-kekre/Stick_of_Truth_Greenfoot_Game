@@ -15,6 +15,7 @@ public class ForestWorld extends World implements IMessageObserver
     private KillsScoreBoard killScore;
     private PowerSpellBoard powerSpellBoard;
     private EnemyFactory enemy;
+    private HelpingCharactersFactory helpingcharacters;
      
     public ForestWorld()
     {    
@@ -41,6 +42,9 @@ public class ForestWorld extends World implements IMessageObserver
          addObject(ch,100,680);
          enemy = EnemyFactory.getEnemyFactory();
          addObject(enemy,0,0);
+         
+         helpingcharacters = HelpingCharactersFactory.getHCFactory();
+         addObject(helpingcharacters,0,0);
     }
     
     public void startGame(){

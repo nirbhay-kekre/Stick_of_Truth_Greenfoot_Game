@@ -16,6 +16,7 @@ public class PowerSpellBoard extends Actor implements IScoreBoardPowerSpellObser
     private static PowerSpellBoard instance;
     private GreenfootImage background;
     private static final Color transparent = new Color(0,0,0,0);
+    private HelpingCharactersFactory hcfactory;
 
     public static synchronized PowerSpellBoard getPowerSpellBoard(){
         if(instance ==null){ 
@@ -28,6 +29,7 @@ public class PowerSpellBoard extends Actor implements IScoreBoardPowerSpellObser
         background = getImage();  // get image from class
         currentPowerSpells = 0;
         updateImage();
+        hcfactory = HelpingCharactersFactory.getHCFactory();
     }
     /**
      * Act - do whatever the PowerSpellBoard wants to do. This method is called whenever
@@ -47,7 +49,7 @@ public class PowerSpellBoard extends Actor implements IScoreBoardPowerSpellObser
     
     private void generatePowerSpell(){
         //generate using factory
-        getWorld().addObject(new PowerSpell(),1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
+        hcfactory.generateHelpingCharacter("PowerSpell");
     }
 
     public void updateScoreBoardPowerSpell(int powerSpells){
