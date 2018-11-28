@@ -38,7 +38,7 @@ public class ForestWorld extends World implements IMessageObserver
          powerSpellBoard.resetPowerSpells();
          addObject(powerSpellBoard, 508, 26);
          
-         ch= new TheGrandWizard();
+         ch= HeroSingleton.getInstance().getCharacter();
          addObject(ch,100,680);
          enemy = EnemyFactory.getEnemyFactory();
          addObject(enemy,0,0);

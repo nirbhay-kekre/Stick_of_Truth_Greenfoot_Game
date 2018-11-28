@@ -8,14 +8,42 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TheGrandWizard extends Hero
 {
-    /**
-     * Act - do whatever the HighElf wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
+        public Cries generateRandomCry(){
+         Cries cries;   
+        int randomNumber = Greenfoot.getRandomNumber(2);
+        switch(randomNumber){
+        case 1: cries= new ShallCarry();
+                 return cries;
+        case 0: cries= new ToWar();
+                 return cries;
+        default: cries= new ToWar();
+                 return cries;         
+        }
+    }
     public void act() 
     {
-        // Add your action code here.
+      
         super.act();
+         if (Greenfoot.mouseClicked(this)) {
+             World world;
+                world = getWorld();
+              Cries temp =HeroSingleton.getInstance().getCry();
+            try{  if(!temp.equals(null)){
+                  world.removeObject(temp);
+              }
+            }catch(Exception e){
+            }
+                
+                if(world.getClass().getName().equals("MainMenu")){
+                 HeroSingleton.getInstance().setCharacter(this);
+                 Cries cries = generateRandomCry();
+                 HeroSingleton.getInstance().setCry(cries);
+               getWorld().addObject(cries,100,580);
+                }
+                
+            } 
+        
     } 
     
     public void setStance(String stance){

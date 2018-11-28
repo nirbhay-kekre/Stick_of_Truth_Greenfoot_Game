@@ -8,17 +8,51 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MarshWalker extends Hero
 {
-    /**
-     * Act - do whatever the MarshWalker wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+      
+    
+        public Cries generateRandomCry(){
+         Cries cries;   
+        int randomNumber = Greenfoot.getRandomNumber(2);
+        switch(randomNumber){
+        case 1: cries= new ShallCarry();
+                 return cries;
+        case 0: cries= new ToWar();
+                 return cries;
+        default: cries= new ToWar();
+                 return cries;         
+        }
+    }
     public void act() 
     {
-        // Add your action code here.
+      
         super.act();
-    }   
+         if (Greenfoot.mouseClicked(this)) {
+             World world;
+                world = getWorld();
+              Cries temp =HeroSingleton.getInstance().getCry();
+            try{  if(!temp.equals(null)){
+                  world.removeObject(temp);
+              }
+            }catch(Exception e){
+            }
+                
+                if(world.getClass().getName().equals("MainMenu")){
+                 HeroSingleton.getInstance().setCharacter(this);
+                 Cries cries = generateRandomCry();
+                 HeroSingleton.getInstance().setCry(cries);
+               getWorld().addObject(cries,1000,580);
+                }
+                
+            } 
+        
+    }  
     
     public void setStance(String stance){
-     
+          switch(stance){
+        case "Attack": setImage(new GreenfootImage("marshwalker_stance.png"));
+                        break;
+        case "Stand": setImage(new GreenfootImage("marshwalker.png"));
+                        break;                
+        }
     }
 }

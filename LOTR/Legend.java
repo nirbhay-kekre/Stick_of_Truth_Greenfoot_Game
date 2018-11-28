@@ -8,12 +8,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Legend extends MenuItems
 {
-    /**
-     * Act - do whatever the Legend wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
+  public void act() 
     {
-        // Add your action code here.
-    }    
+            if(Greenfoot.mouseClicked(this)){
+            invoke();           
+        }   
+    }
+    
+    
+    ICommand legendCommand;
+    public void setCommand(ICommand cmd){
+     this.legendCommand = cmd;
+    }
+    public void invoke(){
+    legendCommand.execute(); 
+    }  
 }

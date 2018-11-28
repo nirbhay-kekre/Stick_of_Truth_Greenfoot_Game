@@ -8,9 +8,7 @@ public class StartMission extends MenuItems implements IInvoker
     {
             if(Greenfoot.mouseClicked(this)){
             invoke();           
-        }
-       
-        
+        }   
     }
     
     

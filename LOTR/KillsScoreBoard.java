@@ -38,13 +38,15 @@ public class KillsScoreBoard extends Actor implements IScoreBoardKillCountObserv
      */
     public void act() 
     {
-        // Add your action code here.
+      
     }    
     
     public void updateScoreBoardKillCount(int killCount){
         kill += killCount;
         kill = (kill > maxKill) ? maxKill: kill;
         updateImage();
+    
+        
     }
     
     /**

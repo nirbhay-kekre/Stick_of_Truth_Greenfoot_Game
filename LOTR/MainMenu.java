@@ -19,9 +19,9 @@ public class MainMenu extends World
         
          
         
-        //Music
-        GreenfootSound backgroundMusic = new GreenfootSound("bgm.mp3");
-        backgroundMusic.playLoop();
+       //Music
+       //GreenfootSound backgroundMusic = new GreenfootSound("bgm.mp3");
+        //backgroundMusic.playLoop();
         
         MenuItems logo =new Logo();
         addObject(logo,getWidth()/2, 200);
@@ -59,7 +59,9 @@ public class MainMenu extends World
         legendCommand.setReciever(new IReceiver() {
             @Override
             public void doAction() {
-                Greenfoot.setWorld(new ForestWorld());
+                Greenfoot.playSound("clickon.wav");
+               Story story =new Story();
+               addObject(story,getWidth()/2,getHeight()/2);
             }
         });
 
@@ -68,7 +70,14 @@ public class MainMenu extends World
         levelOneCommand.setReciever(new IReceiver() {
             @Override
             public void doAction() {
-                Greenfoot.setWorld(new ForestWorld());
+                Hero temp =HeroSingleton.getInstance().getCharacter();
+             try{  if(!temp.equals(null)){
+                  Greenfoot.setWorld(new ForestWorld());
+              }
+            }catch(Exception e){
+                System.out.println("No Character Chosen");
+            }
+              
             }
         });
 
