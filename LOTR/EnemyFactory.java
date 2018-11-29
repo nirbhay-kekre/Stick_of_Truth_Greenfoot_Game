@@ -15,12 +15,12 @@ public class EnemyFactory extends Actor{
         
     }
     
-    public void generateRandomEnemy(){
+    public void generateRandomEnemy(boolean recreateEnemy){
         int randomNumber = Greenfoot.getRandomNumber(2);
-        generateEnemy(randomNumber);
+        generateEnemy(randomNumber, recreateEnemy);
     }
     
-    public void generateEnemy(int enemyCode){
+    public void generateEnemy(int enemyCode, boolean recreateEnemy){
         IMoveStrategy newMoveStrategy;
     	switch(enemyCode){
     		case 0: 
@@ -33,11 +33,11 @@ public class EnemyFactory extends Actor{
                             // 70% time straight strategy
                             newMoveStrategy = new StraightMovementStrategy();
                         }
-                        getWorld().addObject(new Elf(newMoveStrategy), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
+                        getWorld().addObject(new Elf(newMoveStrategy, recreateEnemy), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
     			break;
 
     		case 1:
-    			getWorld().addObject(new Snake(), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
+    			getWorld().addObject(new Snake(recreateEnemy), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
     			break;
 
     		default:
@@ -50,7 +50,7 @@ public class EnemyFactory extends Actor{
                             // 70% time straight strategy
                             newMoveStrategy = new StraightMovementStrategy();
                         }
-                        getWorld().addObject(new Elf(newMoveStrategy), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
+                        getWorld().addObject(new Elf(newMoveStrategy, recreateEnemy), 1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
     			break;
 
     	}

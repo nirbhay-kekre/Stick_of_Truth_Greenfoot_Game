@@ -17,8 +17,6 @@ public class MainMenu extends World
     {    
         super(1280, 800, 1); 
         
-         
-        
        //Music
        //GreenfootSound backgroundMusic = new GreenfootSound("bgm.mp3");
        //backgroundMusic.playLoop();
@@ -31,31 +29,24 @@ public class MainMenu extends World
         MenuItems startMission =new StartMission();
         addObject(startMission,getWidth()/2, 400);
         //Character Initializations
-        Characters gw = new TheGrandWizard();
+        Characters gw = new TheGrandWizard(false);
         addObject(gw,100,680);
         
-        
-        Characters pc = new ProfChaos();
+        Characters pc = new ProfChaos(false);
         addObject(pc,400,680);
         
-        Characters he = new HighElf();
+        Characters he = new HighElf(false);
         addObject(he,700,680);
         
-        Characters mw = new MarshWalker();
+        Characters mw = new MarshWalker(false);
         addObject(mw,1000,680);
-        
         
         Board board = new Board();
         addObject(board,1200,680);
         
-        
-        
-  
-
         ICommand legendCommand =new Command();
         ICommand levelOneCommand = new Command();
-       
-
+        
         legendCommand.setReciever(new IReceiver() {
             @Override
             public void doAction() {
@@ -64,9 +55,7 @@ public class MainMenu extends World
                addObject(story,getWidth()/2,getHeight()/2);
             }
         });
-
-
-
+        
         levelOneCommand.setReciever(new IReceiver() {
             @Override
             public void doAction() {
@@ -82,23 +71,7 @@ public class MainMenu extends World
               
             }
         });
-
-
         legend.setCommand(legendCommand);
         startMission.setCommand(levelOneCommand);
-       
-
-
-        
-
-
-        
-     
-        
-        
-        
-        
-       
-        
-    }
+       }
 }

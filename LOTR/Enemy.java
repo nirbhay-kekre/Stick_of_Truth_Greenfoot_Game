@@ -11,8 +11,10 @@ import java.util.ArrayList;
 public abstract class Enemy extends Characters implements IScoreBoardKillCountSubject
 {
     private List<IScoreBoardKillCountObserver> observers = new ArrayList<IScoreBoardKillCountObserver>();
-
-    public Enemy(){
+    private boolean recreateEnemies;
+    
+    public Enemy(boolean recreateEnemies){
+        this.recreateEnemies = recreateEnemies;
         this.registerScoreBoardKillObserver(KillsScoreBoard.getKillsScoreBoard());
     }
     
@@ -59,5 +61,13 @@ public abstract class Enemy extends Characters implements IScoreBoardKillCountSu
     public void showExplosion(){
         Explosion explosion = new Explosion();
         getWorld().addObject(explosion, this.getX(), this.getY());
+    }
+    
+    public boolean getRecreateEnemies(){
+        return recreateEnemies;
+    }
+    
+    public void setRecreateEnemies(boolean recreateEnemies){
+        this.recreateEnemies =recreateEnemies;
     }
 }

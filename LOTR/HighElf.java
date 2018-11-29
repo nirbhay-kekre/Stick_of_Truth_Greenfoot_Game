@@ -7,46 +7,36 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class HighElf extends Hero
-{
-    
-    
-        public Cries generateRandomCry(){
-         Cries cries;   
-        int randomNumber = Greenfoot.getRandomNumber(2);
-        switch(randomNumber){
-        case 1: cries= new ShallCarry();
-                 return cries;
-        case 0: cries= new ToWar();
-                 return cries;
-        default: cries= new ToWar();
-                 return cries;         
-        }
+{  ActingStrategy currentStrategy;
+    public HighElf(boolean recreateEnemies){
+      
+   super(recreateEnemies);
+        currentStrategy= new LevelZeroActingStrategy();
     }
+    
+
     public void act() 
     {
-      
-        super.act();
-         if (Greenfoot.mouseClicked(this)) {
-             World world;
-                world = getWorld();
+        super.act();  
        
-                if(world.getClass().getName().equals("MainMenu")){
-                    Greenfoot.playSound("clickon.wav");
-                           Cries temp =HeroSingleton.getInstance().getCry();
-            try{  if(!temp.equals(null)){
-                  world.removeObject(temp);
-              }
-            }catch(Exception e){
-            }
-                
-                 HeroSingleton.getInstance().setCharacter(this);
-                 Cries cries = generateRandomCry();
-                 HeroSingleton.getInstance().setCry(cries);
-               getWorld().addObject(cries,700,580);
-                }
-                
-            } 
-        
+         
+        if(getWorld().getClass().getName().equals("MainMenu")){
+        currentStrategy= new LevelZeroActingStrategy();
+        currentStrategy.setWorld(getWorld());
+        currentStrategy.setHero(this);
+        currentStrategy.doAction();
+        }else if(getWorld().getClass().getName().equals("ForestWorld")){
+        currentStrategy= new LevelOneActingStrategy();
+        currentStrategy.setWorld(getWorld());
+        currentStrategy.setHero(this);
+        currentStrategy.doAction();
+        }else if(getWorld().getClass().getName().equals("BossBattleWorld")){
+        currentStrategy= new LevelTwoActingStrategy();
+        currentStrategy.setWorld(getWorld());
+        currentStrategy.setHero(this);
+        currentStrategy.doAction();
+        }
+         
     } 
     
     public void setStance(String stance){

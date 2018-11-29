@@ -9,11 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class TheGrandWizard extends Hero
 {
     ActingStrategy currentStrategy;
-    
-    public TheGrandWizard(){
+    public TheGrandWizard(boolean recreateEnemies){
+        super(recreateEnemies);
         currentStrategy= new LevelZeroActingStrategy();
-
     }
+    
+
     public void act() 
     {
         super.act();  

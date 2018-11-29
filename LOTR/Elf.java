@@ -12,10 +12,12 @@ public class Elf extends Enemy
     private int damagingPower = 5;
     private int health =1;
     private EnemyFactory enemy ;
+    
     /**
     * Constructor for Elf
     */
-    public Elf(IMoveStrategy moveStrategy){
+    public Elf(IMoveStrategy moveStrategy, boolean recreateEnemies){
+        super(recreateEnemies);
         this.moveStrategy = moveStrategy;
         this.moveStrategy.setActor(this);
         enemy = EnemyFactory.getEnemyFactory();
@@ -34,8 +36,9 @@ public class Elf extends Enemy
     */
     public void actorOnEdgeAction(){
         if (this.isAtEdge() && getX() ==0){
-            
-            enemy.generateRandomEnemy();
+            if(this.getRecreateEnemies()){
+                enemy.generateRandomEnemy(this.getRecreateEnemies());
+            }
             getWorld().removeObject(this);
         }
     }
@@ -45,8 +48,9 @@ public class Elf extends Enemy
          super.act();
          
          if(health <=0){
-            EnemyFactory enemy = EnemyFactory.getEnemyFactory();
-            enemy.generateRandomEnemy();  
+            if(this.getRecreateEnemies()){
+                enemy.generateRandomEnemy(this.getRecreateEnemies());
+            } 
             showExplosion();
             getWorld().removeObject(this);
          }else{

@@ -15,7 +15,8 @@ public class Snake extends Enemy
     /**
     * Constructor for Snake
     */
-    public Snake(){
+    public Snake(boolean recreateEnemies){
+        super(recreateEnemies);
         this.moveStrategy = new SinusoidalMovementStrategy();
         this.moveStrategy.setActor(this);
         enemy = EnemyFactory.getEnemyFactory();
@@ -26,7 +27,9 @@ public class Snake extends Enemy
     */
     public void actorOnEdgeAction(){
         if (this.isAtEdge() && getX() ==0){
-            enemy.generateRandomEnemy();
+            if(this.getRecreateEnemies()){
+                enemy.generateRandomEnemy(this.getRecreateEnemies());
+            }
             getWorld().removeObject(this);
         }
     }
@@ -36,7 +39,9 @@ public class Snake extends Enemy
          super.act();
          
          if(health <=0){
-            enemy.generateRandomEnemy();  
+            if(this.getRecreateEnemies()){
+                enemy.generateRandomEnemy(this.getRecreateEnemies());
+            }  
             showExplosion();
             getWorld().removeObject(this);
          }else{

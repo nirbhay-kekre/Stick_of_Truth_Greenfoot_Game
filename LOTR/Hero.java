@@ -12,10 +12,15 @@ public class Hero extends Characters implements IScoreBoardHealthSubject, IScore
   
     private List<IScoreBoardHealthObserver> observers = new ArrayList<IScoreBoardHealthObserver>();
     private List<IScoreBoardPowerSpellObserver> powerSpellObservers = new ArrayList<IScoreBoardPowerSpellObserver>();
-    public Hero(){
+    private EnemyFactory enemyFactory ;
+    private boolean recreateEnemies;
+    
+    public Hero(boolean recreateEnemies){
         this.registerScoreBoardHealthObserver(HealthScoreBoard.getHealthScoreBoard());
         this.registerScoreBoardPowerSpellObserver(PowerSpellBoard.getPowerSpellBoard());
        
+        this.recreateEnemies = recreateEnemies;
+        this.enemyFactory = EnemyFactory.getEnemyFactory();
     }
     
     /**
@@ -35,18 +40,10 @@ public class Hero extends Characters implements IScoreBoardHealthSubject, IScore
             Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
             int damage = enemy.getDamagingPower();
             notifyScoreBoardForHealthUpdate(damage > 0 ? -damage : damage);
-            //System.out.println("Hit by Enemy: "+ enemy.getClass()+ " Damage caused:" +damage);
             this.removeTouching(Enemy.class);
-            IMoveStrategy newMoveStrategy;
-            if ( Greenfoot.getRandomNumber(100) < 30 )
-            {
-                    // 30% time sinusoidal strategy
-                    newMoveStrategy = new SinusoidalMovementStrategy();
-            }else {
-                    // 70% time straight strategy
-                    newMoveStrategy = new StraightMovementStrategy();
+            if(getRecreateEnemies()){
+                enemyFactory.generateRandomEnemy(getRecreateEnemies());
             }
-            getWorld().addObject(new Elf(newMoveStrategy),1280, Greenfoot.getRandomNumber(getWorld().getHeight()));
             return true;
         }
         return false;
@@ -100,5 +97,11 @@ public class Hero extends Characters implements IScoreBoardHealthSubject, IScore
         }
     }
     
-   
+    public boolean getRecreateEnemies(){
+        return recreateEnemies;
+    }
+    
+    public void setRecreateEnemies(boolean recreateEnemies){
+        this.recreateEnemies =recreateEnemies;
+    }
 }
