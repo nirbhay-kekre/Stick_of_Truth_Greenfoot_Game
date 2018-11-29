@@ -26,30 +26,32 @@ public class ForestWorld extends World implements IMessageObserver
          messages.AttachObservers(this);
          addObject(messages,600,680);
          
-         healthScore = HealthScoreBoard.getHealthScoreBoard();
-         healthScore.resetHealth();
-         addObject(healthScore, 108, 26);
-         
-         killScore = KillsScoreBoard.getKillsScoreBoard();
-         killScore.resetKills();
-         addObject(killScore, 308, 26);
-         
-         powerSpellBoard =  PowerSpellBoard.getPowerSpellBoard();
-         powerSpellBoard.resetPowerSpells();
-         addObject(powerSpellBoard, 508, 26);
-         
          ch= HeroSingleton.getInstance().getCharacter();
          addObject(ch,100,680);
+         
          enemy = EnemyFactory.getEnemyFactory();
          addObject(enemy,0,0);
          
-         helpingcharacters = HelpingCharactersFactory.getHCFactory();
-         addObject(helpingcharacters,0,0);
     }
     
     public void startGame(){
         Arrow arrow =new Arrow();
         addObject(arrow,180,630);
+        
+        healthScore = HealthScoreBoard.getHealthScoreBoard();
+        healthScore.resetHealth();
+        addObject(healthScore, 108, 26);
+         
+        killScore = KillsScoreBoard.getKillsScoreBoard();
+        killScore.resetKills();
+        addObject(killScore, 308, 26);
+         
+        powerSpellBoard =  PowerSpellBoard.getPowerSpellBoard();
+        powerSpellBoard.resetPowerSpells();
+        addObject(powerSpellBoard, 508, 26);
+        
+        helpingcharacters = HelpingCharactersFactory.getHCFactory();
+        addObject(helpingcharacters,0,0);
         for(int i=0;i<difficulty;i++){
                enemy.generateRandomEnemy(true);  
         }
