@@ -5,6 +5,10 @@ public class HeroSingleton
     private static HeroSingleton HeroSingleton_instance = null;
     private Hero hero;
     private Cries cries;
+    
+    private HeroSingleton(){
+    }
+    
     public static HeroSingleton getInstance() {
         if (HeroSingleton_instance == null)
             HeroSingleton_instance = new HeroSingleton();
@@ -25,7 +29,7 @@ public class HeroSingleton
         this.cries = cries;
     }
     
-         public Cries getCry() {
+   public Cries getCry() {
         return this.cries;
-    }
+   }
 }
