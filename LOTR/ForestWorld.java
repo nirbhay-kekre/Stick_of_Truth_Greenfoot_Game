@@ -51,7 +51,7 @@ public class ForestWorld extends World implements IMessageObserver
         Arrow arrow =new Arrow();
         addObject(arrow,180,630);
         for(int i=0;i<difficulty;i++){
-               enemy.generateRandomEnemy();  
+               enemy.generateRandomEnemy(true);  
         }
         removeObject(messages);
      

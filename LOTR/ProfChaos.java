@@ -8,9 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ProfChaos extends Hero
 {
+    public ProfChaos(boolean recreateEnemies){
+        super(recreateEnemies);
+    }
     
-    
-        public Cries generateRandomCry(){
+    public Cries generateRandomCry(){
          Cries cries;   
         int randomNumber = Greenfoot.getRandomNumber(2);
         switch(randomNumber){

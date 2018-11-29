@@ -8,7 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MarshWalker extends Hero
 {
-      
+      public MarshWalker(boolean recreateEnemies){
+        super(recreateEnemies);
+    }
     
         public Cries generateRandomCry(){
          Cries cries;   
