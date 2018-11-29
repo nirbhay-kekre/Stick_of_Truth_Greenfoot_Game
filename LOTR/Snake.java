@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Snake extends Enemy
 {
    private IMoveStrategy moveStrategy;
-    private int damagingPower = 2;
+    private int damagingPower = 20;
     private int health =1;
     private EnemyFactory enemy ;
     /**
