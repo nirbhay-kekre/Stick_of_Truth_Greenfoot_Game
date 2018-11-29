@@ -65,7 +65,7 @@ public class ForestWorld extends World implements IMessageObserver
 
     public void setDifficulty(){
         //this.difficulty= difficulty;
-        this.difficulty= 3;
+        this.difficulty= 6;
     }
 
     public void UpdateFromMessages(String message){
