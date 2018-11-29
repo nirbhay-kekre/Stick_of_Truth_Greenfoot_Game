@@ -29,6 +29,12 @@ public class Arrow extends Actor implements IScoreBoardPowerSpellSubject
             setRotation (getRotation() + 5);
         }
         
+         int speed = 5;
+        if(Greenfoot.isKeyDown("up"))
+            setLocation(getX(), getY() - speed);
+        if(Greenfoot.isKeyDown("down"))
+            setLocation(getX(), getY() + speed);
+        
         if ("space".equals(Greenfoot.getKey()))
         { 
              if (Greenfoot.isKeyDown("shift") && hasSpecialPower())

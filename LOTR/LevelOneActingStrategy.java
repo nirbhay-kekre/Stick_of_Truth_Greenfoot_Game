@@ -5,6 +5,11 @@ public class LevelOneActingStrategy  implements ActingStrategy
     World world;
     Hero  hero;
     public void doAction(){
+         int speed = 5;
+        if(Greenfoot.isKeyDown("up"))
+            hero.setLocation(hero.getX(), hero.getY() - speed);
+        if(Greenfoot.isKeyDown("down"))
+            hero.setLocation(hero.getX(), hero.getY() + speed);
     }
   
     
