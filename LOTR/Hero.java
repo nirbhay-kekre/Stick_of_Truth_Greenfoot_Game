@@ -14,7 +14,7 @@ public class Hero extends Characters implements IScoreBoardHealthSubject, IScore
     private List<IScoreBoardPowerSpellObserver> powerSpellObservers = new ArrayList<IScoreBoardPowerSpellObserver>();
     private EnemyFactory enemyFactory ;
     private boolean recreateEnemies;
-    
+    ActingStrategy currentStrategy;
     public Hero(boolean recreateEnemies){
         this.registerScoreBoardHealthObserver(HealthScoreBoard.getHealthScoreBoard());
         this.registerScoreBoardPowerSpellObserver(PowerSpellBoard.getPowerSpellBoard());

@@ -3,23 +3,36 @@ import greenfoot.*;
 public class BossBattleWorld extends World 
 {
 
-    private Characters ch;
+    private BossEnemy bossEnemy;
+    private Hero hero;
+    private HealthScoreBoard healthScore;
+    private BossEnemyHealthScoreBoard BossHealthScore;
+    private HelpingCharactersFactory helpingcharacters;
+    
     public BossBattleWorld()
     {    
         super(1280, 800, 1, false); 
         
-        ch= new TheGrandWizard(false);
-        addObject(ch,getWidth()/2,getHeight()/2);
+        hero= HeroSingleton.getInstance().getCharacter();
+        if(hero == null){
+            hero = new TheGrandWizard(false);
+        }
+        hero.setRecreateEnemies(false);
+        addObject(hero,getWidth()/2,getHeight()/2);
         
-        ch= new BossEnemy(false);
-        addObject(ch,1000,380);  
+        bossEnemy= new BossEnemy(false);
+        addObject(bossEnemy,1000,380);  
         
         EnemyFactory enemy = EnemyFactory.getEnemyFactory();
         addObject(enemy,0,0);
-         
+        
+        healthScore = HealthScoreBoard.getHealthScoreBoard();
+        addObject(healthScore, 108, 26);
+        
+        BossHealthScore = BossEnemyHealthScoreBoard.getHealthScoreBoard();
+        addObject(BossHealthScore, 1108, 26);
+        
+        helpingcharacters = HelpingCharactersFactory.getHCFactory();
+        addObject(helpingcharacters,0,0);
     }
-    
-   
-
-
 }

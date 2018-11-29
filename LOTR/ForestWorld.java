@@ -8,7 +8,7 @@ import greenfoot.*;
 public class ForestWorld extends World implements IMessageObserver
 {
 
-    private Characters ch;
+    private Hero ch;
     private Messages messages;
     private int difficulty;
     private HealthScoreBoard healthScore;
@@ -27,6 +27,7 @@ public class ForestWorld extends World implements IMessageObserver
          addObject(messages,600,680);
          
          ch= HeroSingleton.getInstance().getCharacter();
+         ch.setRecreateEnemies(true);
          addObject(ch,100,680);
          
          enemy = EnemyFactory.getEnemyFactory();
