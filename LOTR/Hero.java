@@ -9,11 +9,13 @@ import java.util.ArrayList;
  */
 public class Hero extends Characters implements IScoreBoardHealthSubject, IScoreBoardPowerSpellSubject
 {
+  
     private List<IScoreBoardHealthObserver> observers = new ArrayList<IScoreBoardHealthObserver>();
     private List<IScoreBoardPowerSpellObserver> powerSpellObservers = new ArrayList<IScoreBoardPowerSpellObserver>();
     public Hero(){
         this.registerScoreBoardHealthObserver(HealthScoreBoard.getHealthScoreBoard());
         this.registerScoreBoardPowerSpellObserver(PowerSpellBoard.getPowerSpellBoard());
+       
     }
     
     /**
@@ -25,6 +27,7 @@ public class Hero extends Characters implements IScoreBoardHealthSubject, IScore
         updateOnHitByEnemy();
         updateOnGotHealth();
         updateOnTouchingPowerSpell();
+        
     }    
     
     protected boolean updateOnHitByEnemy(){
@@ -96,4 +99,6 @@ public class Hero extends Characters implements IScoreBoardHealthSubject, IScore
              observer.updateScoreBoardPowerSpell(powerSpell);
         }
     }
+    
+   
 }

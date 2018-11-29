@@ -8,50 +8,37 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TheGrandWizard extends Hero
 {
+    ActingStrategy currentStrategy;
     
-        public Cries generateRandomCry(){
-         Cries cries;   
-        int randomNumber = Greenfoot.getRandomNumber(2);
-        switch(randomNumber){
-        case 1: cries= new ShallCarry();
-                 return cries;
-        case 0: cries= new ToWar();
-                 return cries;
-        default: cries= new ToWar();
-                 return cries;         
-        }
+    public TheGrandWizard(){
+        currentStrategy= new LevelZeroActingStrategy();
+
     }
     public void act() 
     {
-      
-        super.act();
-        
-        int speed = 3;
-        if(Greenfoot.isKeyDown("up"))
-            setLocation(getX(), getY() - speed);
-        if(Greenfoot.isKeyDown("down"))
-            setLocation(getX(), getY() + speed);
-        if(Greenfoot.isKeyDown("left"))
-            setLocation(getX() - speed, getY());
-        if(Greenfoot.isKeyDown("right"))
-            setLocation(getX() + speed, getY());
-           if ("space".equals(Greenfoot.getKey()))
-        { 
-           
-                fire();
-            
+        super.act();  
+       
+         
+        if(getWorld().getClass().getName().equals("MainMenu")){
+        currentStrategy= new LevelZeroActingStrategy();
+        currentStrategy.setWorld(getWorld());
+        currentStrategy.setHero(this);
+        currentStrategy.doAction();
+        }else if(getWorld().getClass().getName().equals("ForestWorld")){
+        currentStrategy= new LevelOneActingStrategy();
+        currentStrategy.setWorld(getWorld());
+        currentStrategy.setHero(this);
+        currentStrategy.doAction();
+        }else if(getWorld().getClass().getName().equals("BossBattleWorld")){
+        currentStrategy= new LevelTwoActingStrategy();
+        currentStrategy.setWorld(getWorld());
+        currentStrategy.setHero(this);
+        currentStrategy.doAction();
         }
-            
-            
+         
     } 
-    
-        private void fire()
-    {
-        NormalSpell ns = new NormalSpell();
-        getWorld().addObject(ns, getX(), getY());
-        
-        ns.move(40);
-    }
+   
+ 
     
     public void setStance(String stance){
      switch(stance){

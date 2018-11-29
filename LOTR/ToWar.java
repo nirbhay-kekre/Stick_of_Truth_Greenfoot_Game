@@ -15,5 +15,17 @@ public class ToWar extends Cries
     public void act() 
     {
         // Add your action code here.
-    }    
+        removeOnClick();
+    } 
+    
+                public void removeOnClick()
+        {
+         if (Greenfoot.mouseClicked(this)) {
+             Greenfoot.playSound("clickoff.wav");
+                World world;
+                world = getWorld();
+                world.removeObject(this);
+                return;
+            }    
+    }
 }
