@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Elf extends Enemy
 {
     private IMoveStrategy moveStrategy;
-    private int damagingPower = 5;
+    private int damagingPower = 10;
     private int health =1;
     private EnemyFactory enemy ;
     
