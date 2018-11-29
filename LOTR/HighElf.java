@@ -29,14 +29,16 @@ public class HighElf extends Hero
          if (Greenfoot.mouseClicked(this)) {
              World world;
                 world = getWorld();
-              Cries temp =HeroSingleton.getInstance().getCry();
+       
+                if(world.getClass().getName().equals("MainMenu")){
+                    Greenfoot.playSound("clickon.wav");
+                           Cries temp =HeroSingleton.getInstance().getCry();
             try{  if(!temp.equals(null)){
                   world.removeObject(temp);
               }
             }catch(Exception e){
             }
                 
-                if(world.getClass().getName().equals("MainMenu")){
                  HeroSingleton.getInstance().setCharacter(this);
                  Cries cries = generateRandomCry();
                  HeroSingleton.getInstance().setCry(cries);

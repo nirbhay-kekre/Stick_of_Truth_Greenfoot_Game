@@ -25,26 +25,33 @@ public class TheGrandWizard extends Hero
     {
       
         super.act();
-         if (Greenfoot.mouseClicked(this)) {
-             World world;
-                world = getWorld();
-              Cries temp =HeroSingleton.getInstance().getCry();
-            try{  if(!temp.equals(null)){
-                  world.removeObject(temp);
-              }
-            }catch(Exception e){
-            }
-                
-                if(world.getClass().getName().equals("MainMenu")){
-                 HeroSingleton.getInstance().setCharacter(this);
-                 Cries cries = generateRandomCry();
-                 HeroSingleton.getInstance().setCry(cries);
-               getWorld().addObject(cries,100,580);
-                }
-                
-            } 
         
+        int speed = 3;
+        if(Greenfoot.isKeyDown("up"))
+            setLocation(getX(), getY() - speed);
+        if(Greenfoot.isKeyDown("down"))
+            setLocation(getX(), getY() + speed);
+        if(Greenfoot.isKeyDown("left"))
+            setLocation(getX() - speed, getY());
+        if(Greenfoot.isKeyDown("right"))
+            setLocation(getX() + speed, getY());
+           if ("space".equals(Greenfoot.getKey()))
+        { 
+           
+                fire();
+            
+        }
+            
+            
     } 
+    
+        private void fire()
+    {
+        NormalSpell ns = new NormalSpell();
+        getWorld().addObject(ns, getX(), getY());
+        
+        ns.move(40);
+    }
     
     public void setStance(String stance){
      switch(stance){
