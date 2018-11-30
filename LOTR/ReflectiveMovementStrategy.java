@@ -13,7 +13,7 @@ public class ReflectiveMovementStrategy implements IMoveStrategy
      * Constructor for objects of class StraightMovementStrategy
      */
     public ReflectiveMovementStrategy(){
-        this.movingSpeed = 0-getRandomNumber(2,6);
+        this.movingSpeed = -6;
     }
     
     /**
@@ -30,13 +30,20 @@ public class ReflectiveMovementStrategy implements IMoveStrategy
      */
     public void moveActor(){
         this.actor.move(this.movingSpeed);
+        rotateActor();
     }
     
     /**
      * Actor is not rotated in straight movement strategy
      */
     public void rotateActor(){
-        //no rotation needed in straight movement
+        
+            if(actor.getY() <= 26 ){
+                actor.turn( - 2 * actor.getRotation());
+            }else if(actor.getY() >= 774){
+                actor.turn( 2 * (360- actor.getRotation()));
+            }
+        
     }
     
     /**

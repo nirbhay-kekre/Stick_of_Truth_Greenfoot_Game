@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class BossEnemy extends Enemy implements IScoreBoardHealthSubject
 {
-    int moveValue=4;
-    boolean isgenerated=false;
-       // in a subclass of Actor
+    private int direction =1, magnitude =2;
+    private boolean isgenerated=false;
+    
     private long curTime, prevTime;
     private static final long DELAY_TIME = 5000; // in milliseconds
     private int damagingPower = 5;
@@ -41,40 +41,35 @@ public class BossEnemy extends Enemy implements IScoreBoardHealthSubject
         }
       
         moveAround();
-        move(moveValue);
+        move(this.direction * this.magnitude);
+        shootSpell();
     }
     
     public void moveAround(){
-        
         if( getX()>=getWorld().getWidth()+1000){
-            if(!isgenerated){
-            int numOfEnemiesGenerate = 3+ Greenfoot.getRandomNumber(3);
-            while(numOfEnemiesGenerate -- >0){
-                 EnemyFactory.getEnemyFactory().generateRandomEnemy(false);
-            }
-             isgenerated=true;
-            }
-            this.moveValue=-4;
-        
+            generateEnemy();
+            this.direction=-1;
         }
         if(getX()<=getWorld().getWidth()-150){
-            this.moveValue=0;
             isgenerated=false;
-            //System.out.println(getX());
-            /*if(1128==getX()){  
-               curTime = System.currentTimeMillis();
-               if (prevTime +DELAY_TIME > curTime) {
-                   return;
-               } else {
-                    prevTime = curTime;
-               } 
-             }*/
-            this.moveValue=+2;
-        
+            this.direction=1;
+        }
+        if(getX()<=getWorld().getWidth()){
+            this.magnitude = 2;
+        } else {
+            this.magnitude = 4;
         }
     }
     
-    
+    public void generateEnemy(){
+        if(!isgenerated){
+            int numOfEnemiesGenerate = 3+ Greenfoot.getRandomNumber(3);
+            while(numOfEnemiesGenerate -- >0){
+                EnemyFactory.getEnemyFactory().generateRandomEnemy(false);
+            }
+            isgenerated=true;
+        }
+    }
         
     public int getDamagingPower(){
         return damagingPower;
@@ -89,7 +84,21 @@ public class BossEnemy extends Enemy implements IScoreBoardHealthSubject
         notifyScoreBoardForHealthUpdate(health);
     }
     
-    
+    public void shootSpell(){
+        if(this.getX() == this.getWorld().getWidth() && this.direction > 0){
+            BossEnemySpell bs1 = new BossEnemySpell(false);
+            BossEnemySpell bs2 = new BossEnemySpell(false);
+            BossEnemySpell bs3 = new BossEnemySpell(false);
+            
+            int rotation = Greenfoot.getRandomNumber(45);
+            bs1.setRotation(30 + rotation);
+            bs2.setRotation(285 + rotation);
+            this.getWorld().addObject(bs1,getX(),getY());
+            this.getWorld().addObject(bs2,getX(),getY());
+            this.getWorld().addObject(bs3,getX(),getY());
+        }
+    }
+
     public void registerScoreBoardHealthObserver(IScoreBoardHealthObserver observer){
         observers.add(observer);
     }

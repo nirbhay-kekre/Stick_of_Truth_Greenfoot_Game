@@ -38,6 +38,5 @@ public class BossBattleWorld extends World
         
         killScore = KillsScoreBoard.getKillsScoreBoard();
         killScore.resetKills();
-        
     }
 }
