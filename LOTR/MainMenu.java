@@ -18,7 +18,7 @@ public class MainMenu extends World
         super(1280, 800, 1); 
         
        //Music
-       //GreenfootSound backgroundMusic = new GreenfootSound("bgm.mp3");
+       GreenfootSound backgroundMusic = new GreenfootSound("bgm.mp3");
        //backgroundMusic.playLoop();
         
         MenuItems logo =new Logo();
