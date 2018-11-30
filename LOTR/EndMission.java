@@ -8,12 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EndMission extends Actor
 {
-    /**
-     * Act - do whatever the EndMission wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
+ public void act() 
     {
-        // Add your action code here.
-    }    
+        removeOnClick();
+    }
+        public void removeOnClick()
+        {
+         if (Greenfoot.mouseClicked(this)) {
+             Greenfoot.playSound("clickoff.wav");
+                Greenfoot.setWorld(new MainMenu());
+                return;
+            }    
+    }     
 }

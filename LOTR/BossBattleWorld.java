@@ -8,6 +8,7 @@ public class BossBattleWorld extends World
     private HealthScoreBoard healthScore;
     private BossEnemyHealthScoreBoard BossHealthScore;
     private HelpingCharactersFactory helpingcharacters;
+    private KillsScoreBoard killScore;
     
     public BossBattleWorld()
     {    
@@ -34,5 +35,9 @@ public class BossBattleWorld extends World
         
         helpingcharacters = HelpingCharactersFactory.getHCFactory();
         addObject(helpingcharacters,0,0);
+        
+        killScore = KillsScoreBoard.getKillsScoreBoard();
+        killScore.resetKills();
+        
     }
 }

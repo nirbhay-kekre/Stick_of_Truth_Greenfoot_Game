@@ -69,8 +69,12 @@ public class HealthScoreBoard extends Actor implements IScoreBoardHealthObserver
         
         health = health+deltaHealth > maxHealth ? 
                        maxHealth : health+deltaHealth < 0 ?
-                                    0: health+deltaHealth;
+                                    0: health+deltaHealth;       
         updateImage();
+        if(health== 0){
+        Greenfoot.setWorld(new GameOverWorld());
+            }
+        
     }
 
     /**

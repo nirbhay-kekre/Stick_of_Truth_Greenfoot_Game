@@ -45,8 +45,10 @@ public class KillsScoreBoard extends Actor implements IScoreBoardKillCountObserv
         kill += killCount;
         kill = (kill > maxKill) ? maxKill: kill;
         updateImage();
-    
         
+        if(kill== maxKill){
+        Greenfoot.setWorld(new EndLevelOneWorld());
+        }
     }
     
     /**

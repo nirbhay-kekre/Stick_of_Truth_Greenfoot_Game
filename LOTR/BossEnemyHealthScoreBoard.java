@@ -52,6 +52,9 @@ public class BossEnemyHealthScoreBoard extends Actor implements IScoreBoardHealt
         
         health = updatedHealth;
         updateImage();
+           if(health== 0){
+        Greenfoot.setWorld(new EndGameWorld());
+            }
     }
 
     /**
