@@ -17,8 +17,8 @@ public class BossEnemy extends Enemy implements IScoreBoardHealthSubject
     public BossEnemy(boolean recreateEnemies){
         super(recreateEnemies);
         this.registerScoreBoardHealthObserver(BossEnemyHealthScoreBoard.getHealthScoreBoard());
-        this.notifyScoreBoardForHealthUpdate(this.health);
         health = maxHealth;
+        this.notifyScoreBoardForHealthUpdate(this.health);
     }
     
     
