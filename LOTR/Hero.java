@@ -14,7 +14,8 @@ public class Hero extends Characters implements IScoreBoardHealthSubject, IScore
     private List<IScoreBoardPowerSpellObserver> powerSpellObservers = new ArrayList<IScoreBoardPowerSpellObserver>();
     private EnemyFactory enemyFactory ;
     private boolean recreateEnemies;
-    ActingStrategy currentStrategy;
+    private ActingStrategy currentStrategy;
+    
     public Hero(boolean recreateEnemies){
         this.registerScoreBoardHealthObserver(HealthScoreBoard.getHealthScoreBoard());
         this.registerScoreBoardPowerSpellObserver(PowerSpellBoard.getPowerSpellBoard());
@@ -41,6 +42,7 @@ public class Hero extends Characters implements IScoreBoardHealthSubject, IScore
             int damage = enemy.getDamagingPower();
             notifyScoreBoardForHealthUpdate(damage > 0 ? -damage : damage);
             this.removeTouching(Enemy.class);
+            enemyFactory.distroyEnemy(enemy);
             if(getRecreateEnemies()){
                 enemyFactory.generateRandomEnemy(getRecreateEnemies());
             }

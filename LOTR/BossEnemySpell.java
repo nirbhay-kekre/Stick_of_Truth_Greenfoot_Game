@@ -10,12 +10,14 @@ public class BossEnemySpell extends Enemy
 {
     private IMoveStrategy moveStrategy;
     private int damagingPower = 20;
-    private int health = Integer.MAX_VALUE;
+    private int maxHealth = Integer.MAX_VALUE;
+    private int health ;
     
     public BossEnemySpell(boolean recreateEnemies){
         super(recreateEnemies);
         moveStrategy = new ReflectiveMovementStrategy();
         moveStrategy.setActor(this);
+        health = maxHealth;
     }
     /**
      * Act - do whatever the BossEnemySpell wants to do. This method is called whenever
@@ -39,5 +41,9 @@ public class BossEnemySpell extends Enemy
     
     protected void setHealth(int health){
         this.health = health;
+    }
+
+    protected void resetHealth(){
+        this.health = maxHealth;
     }
 }

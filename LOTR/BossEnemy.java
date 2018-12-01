@@ -6,11 +6,11 @@ public class BossEnemy extends Enemy implements IScoreBoardHealthSubject
 {
     private int direction =1, magnitude =2;
     private boolean isgenerated=false;
-    
+    private int maxHealth =100;
     private long curTime, prevTime;
     private static final long DELAY_TIME = 5000; // in milliseconds
     private int damagingPower = 5;
-    private int health =100;
+    private int health;
     
     private List<IScoreBoardHealthObserver> observers = new ArrayList<IScoreBoardHealthObserver>();
     
@@ -18,6 +18,7 @@ public class BossEnemy extends Enemy implements IScoreBoardHealthSubject
         super(recreateEnemies);
         this.registerScoreBoardHealthObserver(BossEnemyHealthScoreBoard.getHealthScoreBoard());
         this.notifyScoreBoardForHealthUpdate(this.health);
+        health = maxHealth;
     }
     
     
@@ -133,6 +134,10 @@ public class BossEnemy extends Enemy implements IScoreBoardHealthSubject
             ydist *=-1;
         }
         getWorld().addObject(explosion,this.getX() + xdist, this.getY() +ydist);
+    }
+
+    protected void resetHealth(){
+        this.health = maxHealth;
     }
 }
 

@@ -27,7 +27,7 @@ public abstract class Enemy extends Characters implements IScoreBoardKillCountSu
     }
     
     abstract protected void setHealth(int health);
-    
+    abstract protected void resetHealth();
     abstract public int getHealth();  
 
     public void registerScoreBoardKillObserver(IScoreBoardKillCountObserver observer){
