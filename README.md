@@ -13,7 +13,7 @@ Check Out our cool Ad Video to sell our game!
 https://www.youtube.com/watch?v=36PhQeRy1Io
 
 ## Github Project Board
-https://github.com/nguyensjsu/fa18-202-deyun/projects/1 (Links to an external site.)Links to an external site.
+https://github.com/nguyensjsu/fa18-202-deyun/projects/1
 
 ## Scrum:   
 https://github.com/nguyensjsu/fa18-202-deyun/tree/master/ScrumWeeklys
