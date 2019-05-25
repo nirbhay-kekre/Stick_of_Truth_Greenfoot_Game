@@ -56,9 +56,5 @@ public class Messages extends Actor implements IMessageSubject
             observer.UpdateFromMessages(message);
         }
     }
- 
-    
 
-    
- 
 }
