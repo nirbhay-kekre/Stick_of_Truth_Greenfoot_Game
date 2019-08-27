@@ -7,10 +7,23 @@
 4. Shashank Singh
 5. Zhiyang Zhang
 
-
 ## Project Ad Video
 Check Out our cool Ad Video to sell our game!
 https://www.youtube.com/watch?v=36PhQeRy1Io
+
+## How to Play
+![how to play](https://github.com/nirbhay-kekre/Stick_of_Truth_Greenfoot_Game/blob/master/LOTR/images/HelpReadMe.png "How to play")
+
+## Gameplay images
+
+### Main Menu
+![Main Menu](https://github.com/nirbhay-kekre/Stick_of_Truth_Greenfoot_Game/blob/master/LOTR/images/mainMenuPlay.png "Main Menu")
+
+### Level 1
+![Level1](https://github.com/nirbhay-kekre/Stick_of_Truth_Greenfoot_Game/blob/master/LOTR/images/gameplay.png "Level1")
+
+### Final Battle
+![Final Battle](https://github.com/nirbhay-kekre/Stick_of_Truth_Greenfoot_Game/blob/master/LOTR/images/bossGamePlay.png "final battle")
 
 ## Github Project Board
 https://github.com/nguyensjsu/fa18-202-deyun/projects/1
